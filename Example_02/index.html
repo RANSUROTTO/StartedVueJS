@@ -1,0 +1,71 @@
+<!doctype <!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Example_02</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="../node_modules/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+
+        <div id="app">
+            <h3>
+                {{title}}
+            </h3>
+
+            <ul>
+                <todo-item></todo-item>
+            </ul>
+
+            <p>我们来尝试一下动态绑定</p>
+            <ol>
+                <!-- 所以说这个 v-bind:key 有什么卵用呢？ -->
+                <todo-temp v-bind:property="item" v-bind:key="item.id" v-for="item in todo"></todo-temp>
+            </ol>
+
+            <p>我想知道能不能组件内套用组件</p>
+            <todo-list></todo-list>
+            <p style="color:red;">看来结果是可以组件套用组件,另外，组件内的模板仅可以存在一个标签</p>
+
+        </div>
+
+        <script>
+            Vue.component("todo-item", {
+                template: "<li>基本组件实例</li>"
+            });
+
+            Vue.component("todo-temp", {
+                props: ['property'],
+                template: "<li>{{property.text}}</li>"
+            });
+
+            Vue.component("todo-list", {
+                template: "<todo-item></todo-item>"
+            });
+
+            var app = new Vue({
+                el: "#app",
+                data: {
+                    title: "这个例子的主题呢，是\"组件\"",
+                    todo: [{
+                            id: 1,
+                            text: "Language_1:简体中文(zh-CN)"
+                        },
+                        {
+                            id: 2,
+                            text: "Language_2:English(en-us)"
+                        },
+                        {
+                            id: 3,
+                            text: "Language_3:日本语(ja)"
+                        }
+                    ]
+                }
+            });
+        </script>
+    </body>
+
+</html>

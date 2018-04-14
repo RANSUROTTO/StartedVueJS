@@ -1,0 +1,87 @@
+<!doctype <!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Hello Vue js</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="../node_modules/vue/dist/vue.js"></script>
+        <style>
+            #app-1 {
+                width: 500px;
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div id="app-1">
+            <h1 v-bind:title="datetime">
+                <p>{{message}}</p>
+                <input v-model="message">
+            </h1>
+
+            <button v-on:click="ChangeSeen">点我改变seen的值</button>
+            <div v-if="seen">
+                假如您看的到我,那么Seen就为true
+            </div>
+            <div v-else>
+                好吧现在Seen为false
+            </div>
+
+            <br/>
+
+            <div v-if="todo.length>0">
+                你下午有哪些计划,请循环&lt;li&gt;告诉我？
+                <p>
+                    <input id="addToTodo" placeholder="您想做什么">
+                    <button v-on:click="AddToTodo()">加入计划</button>
+                </p>
+                <ul>
+                    <li v-for="item in todo">
+                        {{item.text}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <script>
+            var app1 = new Vue({
+                el: '#app-1',
+                data: {
+                    message: 'Hello,Word',
+                    datetime: new Date().toLocaleString(),
+                    seen: true,
+                    todo: [{
+                            text: "1.认真工作"
+                        },
+                        {
+                            text: "2.学习Vue或者AngularJs"
+                        },
+                        {
+                            text: "3.学习一门外语"
+                        }, {
+                            text: "4.搞一些大事情哈哈哈哈"
+                        }
+                    ]
+                },
+                methods: {
+                    ChangeSeen: function () {
+                        app1.seen = !this.seen;
+                    },
+                    AddToTodo: function () {
+                        var id = app1.todo.length + 1;
+                        var text = document.getElementById('addToTodo').value;
+
+                        app1.todo.push({
+                            text: id + "." + text
+                        });
+                    }
+                }
+            });
+        </script>
+    </body>
+
+</html>
