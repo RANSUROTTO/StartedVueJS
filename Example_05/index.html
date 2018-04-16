@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>index</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="../node_modules/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+
+        <div id="app">
+
+            <h3>测试侦听数据值给改变</h3>
+            <p>被侦听的Message =&gt; {{message}}</p>
+            <button v-on:click="changeMessage">点我改变message</button>
+        </div>
+
+        <script>
+            var app = new Vue({
+                el: "#app",
+                data: {
+                    message: "ABCDEFG"
+                },
+                methods: {
+                    changeMessage: function () {
+                        this.message = this.message.split('').reverse().join('');
+                    }
+                },
+                watch: {
+                    message: function () {
+                        alert('你触发了message侦听事件！');
+                    }
+                }
+            });
+        </script>
+    </body>
+
+</html>

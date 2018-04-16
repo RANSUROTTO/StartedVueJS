@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>index</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="../node_modules/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <h2>Vue计算机属性</h2>
+        <div id="app">
+            <p>普通插入文本 : {{message}}</p>
+            <p>计算属性插入文本 : {{reverseMessage}}</p>
+            <span style="color: red">差不多像是内置属性,与methods一样使用方法体。不过是应需有返回值的！</span>
+            <span style="color: red">文档上是这么说的：我们可以将同一函数定义为一个方法而不是一个计算属性。 两种方式的最终结果确实是完全相同的。然而，不同的是计算属性是基于它们的依赖进行缓存的。 计算属性只有在它的相关依赖发生改变时才会重新求值(侦听message的)。
+                这就意味着只要 message 还没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的计算结果，而不必再次执行函数。 相反来说，methods必须调用才能出现结果,无法依赖message改变去自动调用出结果
+            </span>
+            <p>
+                其实计算机属性还可以被setter，不信你
+                <a href="javascript:;" v-on:click="computedSetter">点我</a>,
+                setter后,get也会改变
+            </p>
+        </div>
+        <script>
+            var app = new Vue({
+                el: "#app",
+                data: {
+                    message: "ABCDEFG"
+                },
+                methods: {
+                    computedSetter: function () {
+                        this.reverseMessage = "123456789";
+                    }
+                },
+                computed: {
+                    reverseMessage: {
+                        get: function () {
+                            var message = this.message.split('').reverse().join('');
+                            return message;
+                        },
+                        set: function (newVlue) {
+                            this.message = newVlue;
+                        }
+                    }
+                }
+            });
+        </script>
+    </body>
+
+</html>
