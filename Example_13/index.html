@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Index</title>
+        <script src="../node_modules/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <h3>表单输入绑定</h3>
+            <p style="background-color: powderblue;">
+                {{textbox}}
+                <br/>
+                <input type="text" v-model="textbox">
+            </p>
+            <p style="background-color: powderblue;">
+                <input type="checkbox" v-model="checkboxed">
+                <br/> {{checkboxed}}
+            </p>
+            <p style="background-color: powderblue;">
+                <input id="lvyou" type="checkbox" v-model="chekcboxMuiliteVaue" value="旅游">
+                <label for="lvyou">旅游</label>
+                <input id="youyong" type="checkbox" v-model="chekcboxMuiliteVaue" value="游泳">
+                <label for="youyong">游泳</label>
+                <input id="keji" type="checkbox" v-model="chekcboxMuiliteVaue" value="科技">
+                <label for="keji">科技</label>
+                <input id="dongman" type="checkbox" v-model="chekcboxMuiliteVaue" value="动漫">
+                <label for="dongman">动漫</label>
+                <br/> {{chekcboxMuiliteVaue}}
+            </p>
+            <p style="background-color: powderblue;">
+                <input type="checkbox" v-model="chekboxTrueFalseValue" true-value="男" false-value="女">
+                <label>您的性别是男的吗？</label>
+                <br/>看来你的性别是：{{chekboxTrueFalseValue}}
+            </p>
+            <p style="background-color: powderblue;">
+                <input type="radio" v-model="radioVue" value="男">
+                <input type="radio" v-model="radioVue" value="女">
+                <br/> {{radioVue}}
+            </p>
+            <p style="background-color: powderblue;">
+                <select v-model="selected">
+                    <option value="1">第一个</option>
+                    <option value="2">第二个</option>
+                    <option value="3">第三个</option>
+                    <option value="4">第四个</option>
+                </select>
+                <br/> {{selected}}
+            </p>
+            <p style="background-color: powderblue;">
+                这是一个会自动清除两边空格的input
+                <input type="text" v-model.trim="trimText">
+            </p>
+        </div>
+        <script>
+            var vue = new Vue({
+                el: "#app",
+                data: {
+                    textbox: "我是textbox的绑定值",
+                    checkboxed: true,
+                    radioVue: "男",
+                    chekboxTrueFalseValue: "男",
+                    chekcboxMuiliteVaue: ["旅游", "科技"],
+                    selected: "1",
+                    trimText: "qwq"
+                },
+                methods: {}
+            });
+        </script>
+    </body>
+
+</html>

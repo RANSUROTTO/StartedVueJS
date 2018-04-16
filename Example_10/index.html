@@ -23,6 +23,16 @@
                     {{index}}&nbsp;&nbsp;,&nbsp;&nbsp;{{key}}&nbsp;&nbsp;,&nbsp;&nbsp;{{item}}
                 </li>
             </ul>
+            <ul style="background-color:paleturquoise;">
+                <li v-for="(item,key,index) in daiKeyList" :key="item.id">
+                    {{key}} , {{item.message}}
+                </li>
+            </ul>
+            <span style="color:red;">为for指定key并不能改变索引，只是Vue跟踪节点的身份</span>
+            <ul style="background-color:paleturquoise;">
+                <button v-on:click="replaceArray">替换下面的数组</button>
+                <li v-for="item in byReplaceArrayList">{{item.message}}</li>
+            </ul>
         </div>
 
 
@@ -41,6 +51,28 @@
                         description: 'Hello,My name is ',
                         firstName: 'Zheng',
                         lastName: 'ziCong'
+                    },
+                    daiKeyList: [{
+                        id: 1,
+                        message: 'id为1的元素'
+                    }],
+                    byReplaceArrayList: [{
+                        message: "被替换的列表的项"
+                    }, {
+                        message: "被替换的列表的项"
+                    }, {
+                        message: "被替换的列表的项"
+                    }]
+                },
+                methods: {
+                    replaceArray: function () {
+                        this.byReplaceArrayList = [{
+                            message: "我是替换后的列表的项"
+                        }, {
+                            message: "我是替换后的列表的项"
+                        }, {
+                            message: "我是替换后的列表的项"
+                        }]
                     }
                 }
             });

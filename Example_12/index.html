@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Index</title>
+        <script src="../node_modules/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <h3>事件处理</h3>
+            <p>
+                <button v-on:click="count += 1">点击+1</button>
+                <p>我监听了按钮事件，你每点击一次我的数值就会+1。【
+                    <span style="color: red;"> {{count}} </span>】</p>
+            </p>
+            <p style="background-color: powderblue;">
+                <button v-on:click="toAlert('Hello,World!')">点我弹出一个Alert</button>
+            </p>
+        </div>
+        <script>
+            var app = new Vue({
+                el: "#app",
+                data: {
+                    count: 0
+                },
+                methods: {
+                    toAlert: function (message) {
+                        alert(message);
+                    }
+                }
+            });
+        </script>
+    </body>
+
+</html>

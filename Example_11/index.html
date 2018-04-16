@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Index</title>
+        <script src="../node_modules/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <h3>关于对象更改</h3>
+            <ul style="background-color: skyblue;">
+                <button v-on:click="spliceArray">点击更改其中一项的值</button>
+                <li v-for="item in array">{{item.message}}</li>
+            </ul>
+            <div style="background-color: skyblue;">
+                <button v-on:click="appendToProfile">给下面对象添加一个属性</button>
+                <p>{{profileToJson}}</p>
+                <button v-on:click="appendMuitipleToProfile">给上面对象添加多个属性</button>
+            </div>
+            <div style="background-color: skyblue;">
+                <p>经过计算机属性筛选的数:
+                    <span v-for="item in filterArrayComputedProperty">
+                        {{item}}
+                    </span>
+                </p>
+                <p>经过方法筛选的数:
+                    <span v-for="item in filterArrayMethod(filterArray)">
+                        {{item}}
+                    </span>
+                </p>
+            </div>
+
+        </div>
+        <script>
+            var app = new Vue({
+                el: "#app",
+                data: {
+                    array: [{
+                            message: "ABCD"
+                        },
+                        {
+                            message: "ABCD"
+                        },
+                    ],
+                    profile: {
+                        name: "ransurotto",
+                        email: "administrator@ransurotto.com"
+                    },
+                    filterArray: [
+                        1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+                    ]
+                },
+                computed: {
+                    profileToJson: function () {
+                        return JSON.stringify(this.profile);
+                    },
+                    filterArrayComputedProperty: function () {
+                        return this.filterArray.filter(function (number) {
+                            return number % 2 === 0;
+                        });
+                    }
+                },
+                methods: {
+                    spliceArray: function () {
+                        app.$set(app.array, 0, {
+                            message: "EFG"
+                        });
+                    },
+                    appendToProfile: function () {
+                        app.$set(app.profile, "mobile", "4008-823-823");
+                    },
+                    appendMuitipleToProfile: function () {
+                        app.profile = Object.assign({}, app.profile, {
+                            age: 20,
+                            gender: "男"
+                        });
+                    },
+                    filterArrayMethod: function (numbers) {
+                        return numbers.filter(function (number) {
+                            return number % 2 !== 0;
+                        });
+                    }
+                }
+            });
+        </script>
+    </body>
+
+</html>
