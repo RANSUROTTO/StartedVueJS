@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>index</title>
+        <script src="../node_modules/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <h3>绑定内联样式</h3>
+            <p>
+                <em v-bind:style="{color:redColor,border:borderStyle}">直接绑定color:red和border:1pxsolidblue样式</em>
+            </p>
+            <p>
+                <em v-bind:style="[style_1,style_2]">尝试数组绑定样式</em>
+            </p>
+        </div>
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    redColor: 'red',
+                    borderStyle: '1px solid blue',
+                    style_1: {
+                        color: 'red'
+                    },
+                    style_2: {
+                        border: '1px solid blue'
+                    }
+                }
+            });
+        </script>
+    </body>
+
+</html>

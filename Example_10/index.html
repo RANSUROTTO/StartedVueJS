@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Index</title>
+        <script src="../node_modules/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <h3>列表渲染</h3>
+            <ul style="background-color:paleturquoise;">
+                <li v-for="item in arrayList">{{item.message}}</li>
+            </ul>
+            <ul style="background-color:paleturquoise;">
+                <li v-for="(item,index) in arrayList">{{index}},{{item.message}}</li>
+            </ul>
+            <ul style="background-color:paleturquoise;">
+                <li v-for="(item,key,index) in objectFor">
+                    {{index}}&nbsp;&nbsp;,&nbsp;&nbsp;{{key}}&nbsp;&nbsp;,&nbsp;&nbsp;{{item}}
+                </li>
+            </ul>
+        </div>
+
+
+        <script>
+            var app = new Vue({
+                el: "#app",
+                data: {
+                    arrayList: [{
+                            message: '我是列表项.'
+                        },
+                        {
+                            message: '我是列表项.'
+                        }
+                    ],
+                    objectFor: {
+                        description: 'Hello,My name is ',
+                        firstName: 'Zheng',
+                        lastName: 'ziCong'
+                    }
+                }
+            });
+        </script>
+    </body>
+
+</html>

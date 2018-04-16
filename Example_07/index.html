@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>index</title>
+        <script src="../node_modules/vue/dist/vue.js"></script>
+        <style>
+            .red {
+                color: red;
+            }
+
+            .border-blue {
+                border: 1px solid blue;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="app">
+            <h3>绑定类样式</h3>
+            <p>
+                <em v-bind:class="{red:isRed,'border-blue':isBorderBlue}">绑定上.red、border-blue样式的EM标签</em>
+            </p>
+            <p>
+                <em v-bind:class="classObject">通过属性模型绑定上.red、border-blue样式的EM标签</em>
+            </p>
+            <p>
+                <em v-bind:class="classObject">通过计算机属性绑定上.red、border-blue样式的EM标签</em>
+            </p>
+            <p>
+                <em v-bind:class="[classObject_2.redClass,classObject_2.borderClass]">直接绑定.red.border-blue的EM标签</em>
+            </p>
+            <p>
+                <my-component v-bind:class="{'border-blue':isBorderBlue}"></my-component>
+            </p>
+        </div>
+        <script>
+            Vue.component("my-component", {
+                template: "<em class='red'>Hello,为组件绑定上.border-blue</em>"
+            });
+            var vue = new Vue({
+                el: "#app",
+                data: {
+                    isRed: true,
+                    isBorderBlue: true,
+                    classObject: {
+                        red: true,
+                        'border-blue': true
+                    },
+                    classObject_2: {
+                        redClass: 'red',
+                        borderClass: 'border-blue'
+                    }
+                },
+                computed: {
+                    getClassObject: function () {
+                        return {
+                            red: this.isRed,
+                            'border-blue': this.isBorderBlue
+                        };
+                    }
+                }
+            });
+        </script>
+    </body>
+
+</html>
